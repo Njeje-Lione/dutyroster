@@ -10,11 +10,11 @@
         </div>
         <div class="col-md-8">
             <table class="table bg-white">
-                <thead class="bg-info">
+                <thead class="bg-primary">
                     <tr class="text-white">
-                        <th scope="col">Product</th>
-                        <th scope="col">Order by</th>
-                        <th scope="col">Order by</th>
+                        <th scope="col">Name/Dept</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Time</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -23,7 +23,7 @@
                         <td>{{order.product}}</td>
                         <td>{{order.date}}</td>
                         <td>
-                            {{order.staff.username}}
+                            {{order.time}}
                         </td>
                     </tr>
                     {% endfor %}

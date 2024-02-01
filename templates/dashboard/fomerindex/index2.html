@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+    integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+<!--FontAwesome CDN-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
+    integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+<style>
+body {
+  margin: 0;
+  font-family: "Lato", sans-serif;
+  background-color: rgb(222, 226, 230);
+}
+.layoutmain{
+    margin: 30px 10px 10px 10px;
+    border: 1px solid #dc0707;
+    background-color: rgb(255, 252, 252);
+    border-radius: 10px;
+}
+.sidebar {
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: #f1f1f1;
+  border-radius: 10px;
+  position: absolute;
+  height: 100%;
+  overflow: auto;
+}
+.heading{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 900;
+    color: purple;
+    margin-left: 40px;
+}
+.header3{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 900;
+    color: purple;
+    margin-left: 40px;
+}
+
+.sidebar a {
+  display: block;
+  color: black;
+  padding: 16px;
+  text-decoration: none;
+}
+ 
+.sidebar a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+
+.sidebar a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}
+
+section.content {
+  margin-left: 200px;
+  padding: 1px 16px;
+}
+
+@media screen and (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .sidebar a {float: left;}
+  div.content {margin-left: 0;}
+}
+
+@media screen and (max-width: 400px) {
+  .sidebar a {
+    text-align: center;
+    float: none;
+  }
+}
+</style>
+</head>
+<body>
+    <h1 class="heading">Duty Roster</h1>
+<div class="layoutmain">
+    <section class="sidebar">
+        <a class="active" href="#home">Dashboard</a>
+        <a href="#news">Duty</a>
+        <a href="#contact">Checkin</a>
+        <a href="#about">About</a>
+      </section>
+      
+      <section class="content">
+        <!-- FIRST ROW IS HERE -->
+        <div class="row">
+          <div class="col-md-0 mt-4">
+              <!--<div class="card">
+                  <div class="card-header bg-primary text-white">
+                      Information
+                  </div>
+                  <div class="card-body">
+                      <marquee behavior="" direction="">
+                          <h3 class="my-4">New</h3>
+                      </marquee>
+                  </div>
+              </div>-->
+          </div>  
+          <div class="col-md-12 mt-4">
+            <h3 class="header3">Duty Management Dashboard</h3>
+              <div class="card">
+                  <div class="card-header bg-primary text-white">
+                      Dashboard Stats
+                  </div>
+                  <div class="card-body">
+                      <div class="row">
+                          <div class="col-md-4">
+                              <a class="text-decoration-none text-dark" href="{% url 'dashboard-staff' %}">
+                                  <div class="card my-card shadow">
+                                      <div class="card-body text-center">
+                                        <h4><i class="fas fa-users"></i></h4>
+                                          <h4>Staff</h4>
+                                          <h3><!--{{ workers_count }}-->4</h3>
+                                      </div>
+                                  </div>
+                              </a>
+                          </div>
+                          <div class="col-md-4">
+                              <a class="text-decoration-none text-dark" href="{% url 'dashboard-duty' %}">
+                                  <div class="card my-card shadow">
+                                      <div class="card-body text-center">
+                                        <h4><i class="fas fal fa-user-nurse"></i></h4>
+                                          <h4>On Duty</h4>
+                                          <h3><!--{{ duty_count }}-->4</h3>
+                                      </div>
+                                  </div>
+                              </a>
+                          </div>
+                          <div class="col-md-4">
+                              <a class="text-decoration-none text-dark" href="{% url 'dashboard-order' %}">
+                                  <div class="card my-card shadow">
+                                      <div class="card-body text-center">
+                                          <h4>Check-ins and Check-outs <i class="fas fa-solid fa-check"></i></h4>
+                                          <h3><!--{{ orders_count }}-->5</h3>
+                                      </div>
+                                  </div>
+                              </a>
+                          </div>
+                      </div>
+                  </div>
+  
+              </div>
+
+          </div>
+      </div>
+      <!-- END OF FIRST ROW -->
+
+      <!-- SECOND ROW BEGINS HERE -->
+      <div class="row">
+        <div class="col-md-7 mt-4">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    Dashboard Stats
+                </div>
+                <!-- FIRST ROW BEGINS HERE -->
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <a class="text-decoration-none text-dark" href="{% url 'dashboard-staff' %}">
+                                <div class="card my-card shadow">
+                                    <div class="card-body text-center">
+                                      <h4><i class="fas fa-users"></i></h4>
+                                        <h4>Staff</h4>
+                                        <h3><!--{{ workers_count }}-->4</h3>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-4">
+                            <a class="text-decoration-none text-dark" href="{% url 'dashboard-duty' %}">
+                                <div class="card my-card shadow">
+                                    <div class="card-body text-center">
+                                      <h4><i class="fas fal fa-user-nurse"></i></h4>
+                                        <h4>On Duty</h4>
+                                        <h3><!--{{ duty_count }}-->4</h3>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-4">
+                            <a class="text-decoration-none text-dark" href="{% url 'dashboard-order' %}">
+                                <div class="card my-card shadow">
+                                    <div class="card-body text-center">
+                                        <h4>Check-ins and Check-outs <i class="fas fa-solid fa-check"></i></h4>
+                                        <h3><!--{{ orders_count }}-->5</h3>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- END OF FIRST ROW -->
+            </div>
+            
+        </div>
+        <div class="col-md-5 mt-4">
+          <div class="card">
+              <div class="card-header bg-primary text-white">
+                  Information
+              </div>
+              <div class="card-body">
+                  <marquee behavior="" direction="">
+                      <h3 class="my-4">New</h3>
+                  </marquee>
+              </div>
+          </div>
+      </div> 
+    </div>
+        
+       </section>
+
+</div>
+</body>
+</html>

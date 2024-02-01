@@ -1,10 +1,39 @@
 {% extends "partials/base.html" %}
 {% block title %} Home page{% endblock %}
-
 {% block content %}
 {% if user.is_authenticated and user.is_staff and user.is_superuser%}
 {% include 'partials/topnav.html' %}
 {% else %}
 {% include 'dashboard/staff_index.html' %}
 {% endif %}
+<div class="container"></div>
+<div class="row my-4">
+    <div class="col-md-2"></div>
+    <div class="col-md-10 mr-auto">
+        <h2 style="text-align:center;"><b>On Duty</b></h2>
+        <table class="table bg-white table-hover">
+            <thead class="bg-primary">
+                <tr class="text-white">
+                    <th scope="col">Name</th>
+                    <th scope="col">Department</th>
+                    <th scope="col">Hours</th>
+                    {% comment %} <th scope="col">Activity</th> {% endcomment %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                <tr>
+                    <td>{{ item.name}}</td>
+                    <td>{{ item.department}}</td>
+                    <td>{{ item.hours }}</td>
+                    {% comment %} <td>
+                        <a class="btn btn-info btn-sm" href="{% url 'dashboard-duty-update' item.id %}">Edit</a>
+                        <a class="btn btn-danger btn-sm" href="{% url 'dashboard-duty-delete' item.id %}">Delete</a>
+                    </td> {% endcomment %}
+                </tr>
+                {% endfor %} 
+            </tbody>
+        </table>
+    </div>
+</div>
 {% endblock %}

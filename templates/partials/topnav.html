@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-4 mt-4">
         <div class="card">
-            <div class="card-header bg-info text-white">
+            <div class="card-header bg-primary text-white">
                 Information
             </div>
             <div class="card-body">
@@ -13,8 +13,8 @@
     </div>
     <div class="col-md-8 mt-4">
         <div class="card">
-            <div class="card-header bg-info text-white">
-                Dashboard Statistics
+            <div class="card-header bg-primary text-white">
+                Dashboard Stats
             </div>
             <div class="card-body">
                 <div class="row">
@@ -32,7 +32,7 @@
                         <a class="text-decoration-none text-dark" href="{% url 'dashboard-duty' %}">
                             <div class="card my-card shadow">
                                 <div class="card-body text-center">
-                                    <h4>duty<i class="fas fa-box"></i></h4>
+                                    <h4>duty<i class="fas fal fa-user-nurse"></i></h4>
                                     <h3>{{ duty_count }}</h3>
                                 </div>
                             </div>
@@ -42,7 +42,7 @@
                         <a class="text-decoration-none text-dark" href="{% url 'dashboard-order' %}">
                             <div class="card my-card shadow">
                                 <div class="card-body text-center">
-                                    <h4>Orders <i class="fas fa-shipping-fast"></i></h4>
+                                    <h4>Check-ins and Check-outs <i class="fas fa-solid fa-check"></i></h4>
                                     <h3>{{ orders_count }}</h3>
                                 </div>
                             </div>

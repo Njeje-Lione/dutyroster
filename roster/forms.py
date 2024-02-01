@@ -4,7 +4,7 @@ from .models import Duty, Order
 class DutyForm(forms.ModelForm):
     class Meta:
         model = Duty
-        fields=['name','department','hours']
+        fields=['name','department','hours','shift']
 
 class OrderForm(forms.ModelForm):
     class Meta:

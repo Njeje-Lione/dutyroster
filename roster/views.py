@@ -12,6 +12,7 @@ from django.contrib import messages
 @login_required(login_url='user-login')
 def index(request):
     orders = Order.objects.all()
+    items = Duty.objects.all()
     duty_count = Duty.objects.all().count()
     workers_count = User.objects.all().count()
     orders_count = Order.objects.all().count()
@@ -29,6 +30,7 @@ def index(request):
     context={
         'orders':orders,
         'form':form,
+        'items':items,
         'orders_count':orders_count,
         'workers_count':workers_count,
         'duty_count':duty_count,

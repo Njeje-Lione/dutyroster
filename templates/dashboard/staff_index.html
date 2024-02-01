@@ -2,15 +2,17 @@
 <div>
     <div class="row mt-4">
         <div class="col-md-4">
+            <h3> Hey {{ user.username }}</h3>
+            <h3> Time to check in</h3>
             <div class="card">
                 <div class="card-header">
-                    Make Request
+                    Check In
                 </div>
                 <div class="card-body">
                     <form method="POST">
                         {% csrf_token %}
                         {{form|crispy}}
-                        <input class="btn btn-info btn-block" type="submit" value="Make Request">
+                        <input class="btn btn-info btn-block" type="submit" value="Check In">
                     </form>
                 </div>
             </div>
@@ -18,28 +20,30 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    Orders Records
+                    Duty Check-in
                 </div>
                 <div class="card-body">
                     <table class="table bg-white">
-                        <thead class="bg-info text-white">
+                        <thead class="bg-primary text-white">
                             <tr>
                                 <th scope="col">Name</th>
                                 <th scope="col">Department</th>
                                 <th scope="col">Hours</th>
                                 <th scope="col">Date</th>
+                                <th scope="col">time</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for order in orders%}
-                            {% comment %} {% if order.staff == user %} tis is for ensuring that the code displays the duty of the logged in user only{% endcomment %}
+                             {% if order.staff == user %}
                             <tr>
                                 <td>{{ order.product.name }}</td>
                                 <td>{{ order.product.department}}</td>
                                 <td>{{ order.product.hours}}</td>
                                 <td>{{ order.date}}</td>
+                                <td>{{ order.time}}</td>
                             </tr>
-                            {% comment %} {% endif %}  end if of the above statement {% endcomment %}
+                             {% endif %}
                             {% endfor %}
                         </tbody>
                     </table>
