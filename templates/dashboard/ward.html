@@ -1,51 +1,48 @@
 {% extends "partials/base.html" %}
-{% block title %}Duty page{% endblock %}
+{% block title %}Ward page{% endblock %}
   <!--Table-->
   {% load crispy_forms_tags %}
   {% block content%}
   {% include 'partials/topnav.html' %}
    <div class="container">
-    <div class="row my-3">
-        <div class="col-md-3">
+    <div class="row my-4">
+        <div class="col-md-4">
             {% for message in messages %}
             <div class="alert alert-{{ message.tags }}">
                 {{ message }}
             </div>
             {% endfor %}
             <div class="border bg-white p-3">
-                <h4>Add Duty</h4>
+                <h4>Add a Ward</h4>
                 <hr>
                 <form method="POST">
                    {% csrf_token %}
                     {{ form|crispy}}
-                    <input class="btn btn-success btn-block" type="submit" value="Add Duty">
+                    <input class="btn btn-success btn-block" type="submit" value="Add Ward">
 
                 </form>
             </div>
         </div>
-        <div class="col-md-9">
+        <div class="col-md-8">
             <table class="table bg-white">
                 <thead class="bg-primary">
                     <tr class="text-white">
                         <th scope="col">Name</th>
                         <th scope="col">Department</th>
-                        <th scope="col">Hours</th>
-                        <th scope="col">Shift</th>
-                        <th scope="col">Ward</th>
-                        <th scope="col">Activity</th>
+                        <th scope="col">Floor</th>
+                        <th scope="col">Building</th>f
                     </tr>
                 </thead>
                 <tbody>
-                    {% for item in items %}
+                    {% for room in rooms %}
                     <tr>
-                        <td>{{ item.name}}</td>
-                        <td>{{ item.department}}</td>
-                        <td>{{ item.hours }}</td>
-                        <td>{{ item.shift }}</td>
-                        <td>{{ item.ward }}</td>
+                        <td>{{ room.name}}</td>
+                        <td>{{ room.department}}</td>
+                        <td>{{ room.floor }}</td>
+                        <td>{{ room.building }}</td>
                         <td>
-                            <a class="btn btn-info btn-sm" href="{% url 'dashboard-duty-update' item.id %}">Edit</a>
-                            <a class="btn btn-danger btn-sm" href="{% url 'dashboard-duty-delete' item.id %}">Delete</a>
+                            <a class="btn btn-info btn-sm" href="{% url 'dashboard-ward-update' room.id %}">Edit</a>
+                            <a class="btn btn-danger btn-sm" href="{% url 'dashboard-ward-delete' room.id %}">Delete</a>
                         </td>
                     </tr>
                     {% endfor %} 

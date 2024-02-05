@@ -2,7 +2,7 @@
 {% block title %} Home page{% endblock %}
 {% block content %}
 {% if user.is_authenticated and user.is_staff and user.is_superuser%}
-{% include 'partials/topnav.html' %}
+{% include 'partials/newUI.html' %}
 {% else %}
 {% include 'dashboard/staff_index.html' %}
 {% endif %}
@@ -17,6 +17,7 @@
                     <th scope="col">Name</th>
                     <th scope="col">Department</th>
                     <th scope="col">Hours</th>
+                    <th scope="col">Shift</th>
                     {% comment %} <th scope="col">Activity</th> {% endcomment %}
                 </tr>
             </thead>
@@ -26,6 +27,7 @@
                     <td>{{ item.name}}</td>
                     <td>{{ item.department}}</td>
                     <td>{{ item.hours }}</td>
+                    <td>{{ item.shift }}</td>
                     {% comment %} <td>
                         <a class="btn btn-info btn-sm" href="{% url 'dashboard-duty-update' item.id %}">Edit</a>
                         <a class="btn btn-danger btn-sm" href="{% url 'dashboard-duty-delete' item.id %}">Delete</a>

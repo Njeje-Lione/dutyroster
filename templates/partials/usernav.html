@@ -1,0 +1,36 @@
+  <nav class="navbar navbar-expand-lg navbar-info bg-secondary">
+    <div class="container">
+        <a class="navbar-brand text-white" href="">Duty Roster</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link text-white"href="{% url 'dashboard-index' %}">Dashboard <span
+                            class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Other actions
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                          <a class="dropdown-item" href="{% url 'dashboard-leave' %}">Request leave/break</a>
+                          <a class="dropdown-item" href="{% url 'dashboard-complain' %}">File complaint</a>
+                        </div>
+                      </li>
+                     <a class="nav-link text-white" href="{% url 'user-profile' %}" 
+                        <span class="sr-only">{{ user.username }}'s profile</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{% url 'user-logout' %}">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

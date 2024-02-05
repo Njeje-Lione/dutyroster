@@ -22,8 +22,13 @@
 </head>
 
 <body>
-    {% include 'partials/nav.html' %}
-    
+{% if user.is_authenticated and user.is_superuser%}
+{% include 'partials/nav.html' %}
+{% elif user.is_authenticated %}
+{% include 'partials/usernav.html' %}
+{% else %}
+{% include 'partials/nav.html' %}
+{% endif %}
 
     <div class="container">
 

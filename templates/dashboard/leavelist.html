@@ -1,0 +1,37 @@
+{% extends "partials/base.html" %}
+{% block title %}Duty page{% endblock %}
+  <!--Table-->
+  {% load crispy_forms_tags %}
+  {% block content%}
+   <div class="container">
+    <h2 style="text-align:center;color:#6843a3;"><b> LIST OF LEAVES</b> </h2>
+    <div class="row my-2">
+        <div class="col-md-3">
+           
+        </div>
+        <div class="col-md-10">
+            <table class="table bg-white">
+                <thead class="bg-primary">
+                    <tr class="text-white">
+                        <th scope="col">Name</th>
+                        <th scope="col">Department</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Time of application</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for leave in leaves %}
+                    <tr>
+                        <td>{{ leave.name}}</td>
+                        <td>{{ leave.department}}</td>
+                        <td>{{ leave.email}}</td>
+                        <td>{{ leave.time }}</td>
+                    </tr>
+                    {% endfor %} 
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

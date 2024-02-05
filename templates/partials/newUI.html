@@ -12,15 +12,16 @@
 <!--FontAwesome CDN-->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
     integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+
 <style>
 body {
   margin: 0;
   font-family: "Lato", sans-serif;
-  background-color: rgb(222, 226, 230);
+  background-color: #b9bbf0;
 }
 .layoutmain{
-    margin: 30px 10px 10px 10px;
-    border: 1px solid #dc0707;
+    margin:15px -10px -2px -2px
+    border: 1px solid #8387de;
     background-color: rgb(255, 252, 252);
     border-radius: 10px;
 }
@@ -28,7 +29,7 @@ body {
   margin: 0;
   padding: 0;
   width: 200px;
-  background-color: #f1f1f1;
+  background-color: #556ce0;
   border-radius: 10px;
   position: absolute;
   height: 100%;
@@ -37,13 +38,13 @@ body {
 .heading{
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 900;
-    color: purple;
+    color: #373296;
     margin-left: 40px;
 }
 .header3{
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 900;
-    color: purple;
+    color: #373296;
     margin-left: 40px;
 }
 
@@ -55,7 +56,7 @@ body {
 }
  
 .sidebar a.active {
-  background-color: #04AA6D;
+  background-color: #211d73;
   color: white;
 }
 
@@ -91,10 +92,12 @@ section.content {
     <h1 class="heading">Duty Roster</h1>
 <div class="layoutmain">
     <section class="sidebar">
-        <a class="active" href="#home">Dashboard</a>
-        <a href="#news">Duty</a>
-        <a href="#contact">Checkin</a>
-        <a href="#about">About</a>
+        <a class="active"  href="{% url 'dashboard-staff' %}">Dashboard</a>
+        <a href="{% url 'dashboard-duty' %}">Duty</a>
+        <a href="{% url 'dashboard-order' %}">Checkin</a>
+        <a href="{% url 'dashboard-complain-list' %}">Complains</a>
+        <a href="{% url 'dashboard-leavelist' %}">On Leave</a>
+        <a href="{% url 'dashboard-ward' %}">Wards</a>
       </section>
       
       <section class="content">
@@ -125,8 +128,8 @@ section.content {
                                   <div class="card my-card shadow">
                                       <div class="card-body text-center">
                                         <h4><i class="fas fa-users"></i></h4>
-                                          <h4>Staff</h4>
-                                          <h3><!--{{ workers_count }}-->4</h3>
+                                          <h5>Staff</h5>
+                                          <h3>{{ workers_count }}</h3>
                                       </div>
                                   </div>
                               </a>
@@ -136,8 +139,8 @@ section.content {
                                   <div class="card my-card shadow">
                                       <div class="card-body text-center">
                                         <h4><i class="fas fal fa-user-nurse"></i></h4>
-                                          <h4>On Duty</h4>
-                                          <h3><!--{{ duty_count }}-->4</h3>
+                                          <h5>On Duty</h5>
+                                          <h3>{{ duty_count }}</h3>
                                       </div>
                                   </div>
                               </a>
@@ -146,8 +149,8 @@ section.content {
                               <a class="text-decoration-none text-dark" href="{% url 'dashboard-order' %}">
                                   <div class="card my-card shadow">
                                       <div class="card-body text-center">
-                                          <h4>Check-ins and Check-outs <i class="fas fa-solid fa-check"></i></h4>
-                                          <h3><!--{{ orders_count }}-->5</h3>
+                                          <h5>Check-ins and Check-outs <i class="fas fa-solid fa-check"></i></h5>
+                                          <h3>{{ orders_count }}</h3>
                                       </div>
                                   </div>
                               </a>
@@ -172,33 +175,34 @@ section.content {
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-4">
-                            <a class="text-decoration-none text-dark" href="{% url 'dashboard-staff' %}">
+                            <a class="text-decoration-none text-dark" href="{% url 'dashboard-leavelist' %}">
                                 <div class="card my-card shadow">
                                     <div class="card-body text-center">
                                       <h4><i class="fas fa-users"></i></h4>
-                                        <h4>Staff</h4>
-                                        <h3><!--{{ workers_count }}-->4</h3>
+                                        <h5>On leave</h5>
+                                        <h3>{{ leave_count }}</h3>
                                     </div>
                                 </div>
                             </a>
                         </div>
                         <div class="col-md-4">
-                            <a class="text-decoration-none text-dark" href="{% url 'dashboard-duty' %}">
+                            <a class="text-decoration-none text-dark" href="{% url 'dashboard-complain-list' %}">
                                 <div class="card my-card shadow">
                                     <div class="card-body text-center">
-                                      <h4><i class="fas fal fa-user-nurse"></i></h4>
-                                        <h4>On Duty</h4>
-                                        <h3><!--{{ duty_count }}-->4</h3>
+                                      <h4><i class="fas fa-solid fa-comment"></i></h4>
+                                        <h6>Complains</h6>
+                                        <h3>{{ complain_count }}</h3>
                                     </div>
                                 </div>
                             </a>
                         </div>
                         <div class="col-md-4">
-                            <a class="text-decoration-none text-dark" href="{% url 'dashboard-order' %}">
+                            <a class="text-decoration-none text-dark" href="{% url 'dashboard-ward' %}">
                                 <div class="card my-card shadow">
                                     <div class="card-body text-center">
-                                        <h4>Check-ins and Check-outs <i class="fas fa-solid fa-check"></i></h4>
-                                        <h3><!--{{ orders_count }}-->5</h3>
+                                        <h4><i class="fas fa-hospital"></i></h4>
+                                        <h5>Wards</h5>
+                                        <h3>{{ room_count }}</h3>
                                     </div>
                                 </div>
                             </a>
@@ -212,12 +216,50 @@ section.content {
         <div class="col-md-5 mt-4">
           <div class="card">
               <div class="card-header bg-primary text-white">
-                  Information
+                  Duty statistics:name and working hours
               </div>
               <div class="card-body">
-                  <marquee behavior="" direction="">
-                      <h3 class="my-4">New</h3>
-                  </marquee>
+                <canvas id="myChart1" width="40" height="30"></canvas>
+                    <script>
+                        var ctx = document.getElementById('myChart1').getContext('2d');
+                        var myChart1 = new Chart(ctx, {
+                            type: 'doughnut',
+                            data: {
+                                labels: [{% for item in items %} '{{item.name}}', {% endfor %}],
+                        datasets: [{
+                            label: 'Number of Products',
+                            data: [{% for item in items %} {{  item.hours }}, {% endfor %}],
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                                borderColor: [
+                                    'rgba(255, 99, 132, 1)',
+                                    'rgba(54, 162, 235, 1)',
+                                    'rgba(255, 206, 86, 1)',
+                                    'rgba(75, 192, 192, 1)',
+                                    'rgba(153, 102, 255, 1)',
+                                    'rgba(255, 159, 64, 1)'
+                                ],
+                                    borderWidth: 1
+                        }]
+                            },
+                        options: {
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero: true
+                                    }
+                                }]
+                            }
+                        }
+                        });
+                    </script>
+               
               </div>
           </div>
       </div> 
@@ -226,5 +268,7 @@ section.content {
        </section>
 
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.min.js"></script>
 </body>
 </html>
