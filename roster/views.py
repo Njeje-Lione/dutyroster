@@ -57,6 +57,7 @@ def staff(request):
     }
     return render(request, 'dashboard/staff.html',context)
 
+@login_required(login_url='user-login')
 def staff_detail(request,pk):
     workers = User.objects.get(id=pk)
     context={
@@ -89,6 +90,8 @@ def duty(request):
     }
     return render(request, 'dashboard/duty.html', context)
 
+
+@login_required(login_url='user-login')
 def duty_delete(request, pk):
     item= Duty.objects.get(id=pk)
     if request.method=='POST':
@@ -113,6 +116,7 @@ def duty_update(request, pk):
     }
     return render(request, 'dashboard/duty_update.html',context)
 
+@login_required(login_url='user-login')
 def ward(request):
     rooms = Ward.objects.all()
     if request.method == "POST":
@@ -131,6 +135,7 @@ def ward(request):
     }
     return render(request,'dashboard/ward.html',context )
 
+@login_required(login_url='user-login')
 def ward_delete(request, pk):
     room= Ward.objects.get(id=pk)
     if request.method=='POST':
@@ -141,6 +146,7 @@ def ward_delete(request, pk):
     }
     return render(request, 'dashboard/ward_delete.html',context) 
 
+@login_required(login_url='user-login')
 def ward_update(request, pk):
     room=Ward.objects.get(id=pk)
     if request.method=="POST":
@@ -155,6 +161,7 @@ def ward_update(request, pk):
     }
     return render(request, 'dashboard/ward_update.html',context)
 
+@login_required(login_url='user-login')
 def leave(request):
     docs = Leave.objects.all()
     #items = duty.objects.raw('SQL CODE') For writing sql code instead of using the Object Relational mapping.
@@ -179,6 +186,7 @@ def leave(request):
     }
     return render(request, 'dashboard/leave.html', context)
 
+@login_required(login_url='user-login')
 def leavelist(request):
     leaves = Leave.objects.all()
     leave_count = leaves.count()
@@ -187,6 +195,8 @@ def leavelist(request):
         'leave_count':leave_count,
     }
     return render(request, "dashboard/leavelist.html",context)
+
+@login_required(login_url='user-login') 
 def leavesview(request,pk):
      leaveview = Leave.objects.get(id=pk)
      context ={
@@ -195,6 +205,7 @@ def leavesview(request,pk):
      return render(request,'dashboard/leavesview.html',context)
 
 
+@login_required(login_url='user-login')
 def complain(request):
     complain = Complains.objects.all()
     #items = duty.objects.raw('SQL CODE') For writing sql code instead of using the Object Relational mapping.
@@ -219,6 +230,7 @@ def complain(request):
     }
     return render(request, 'dashboard/complain.html', context)
 
+@login_required(login_url='user-login')
 def complainlist(request):
     complains = Complains.objects.all()
     complain_count = complains.count()
