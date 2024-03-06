@@ -1,0 +1,19 @@
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'homepage.css' %}">
+<div class="holder">
+    <nav>
+        <ul>
+            <li><a href="{% url 'user-register' %}">Register</a></li>
+            <li><a href="{% url 'user-login' %}">Login</a></li>
+        </ul>
+    </nav>
+    <div class="content">
+        <h1>Duty Roster<h1>
+            <p id="paragraph">Duty Roster management System for nurses</p>
+            <h2>Duty is allocated according to ward and department </h2>
+            <h2>Login and check if you are on duty. If you are, check in </h2>
+    </div>
+
+</div>
+{% endblock %}

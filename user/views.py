@@ -6,6 +6,10 @@ from .forms import ProfileUpdateForm
 from django.contrib import messages
 
 # Create your views here.
+def homepage(request):
+    return render(request, "user/homepage.html")
+
+
 def register(request):
     if request.method == 'POST':
         form=CreateUserForm(request.POST)

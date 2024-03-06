@@ -28,7 +28,8 @@ urlpatterns = [
     path('register/',user_views.register, name='user-register' ),
     path('profile/',user_views.profile, name='user-profile' ),
     path('profile/update/',user_views.profile_update, name='user-profile-update' ),
-    path('',auth_views.LoginView.as_view(template_name='user/login.html'), name='user-login'),
+    path('login/',auth_views.LoginView.as_view(template_name='user/login.html'), name='user-login'),
+    path('', user_views.homepage, name='user-homepage'),
     path('logout/',roster_view.logout_user,name='user-logout'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
                

@@ -1,5 +1,4 @@
 body{
-    background-color: aqua;
     background-image: url("../../media/images/nurse.jpg");
     background-repeat: no-repeat;
     background-size: cover;
@@ -22,4 +21,7 @@ body{
     color:white;
     border-radius: 20px;
     background-color: rgb(84, 84, 206);
+}
+form{
+    color:black;
 }
