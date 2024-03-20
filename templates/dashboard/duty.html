@@ -23,36 +23,75 @@
                 </form>
             </div>
         </div>
+        
         <div class="col-md-9">
-            <table class="table bg-white">
-                <thead class="bg-primary">
-                    <tr class="text-white">
-                        <th scope="col">Name</th>
-                        <th scope="col">Department</th>
-                        <th scope="col">Hours</th>
-                        <th scope="col">Shift</th>
-                        <th scope="col">Ward</th>
-                        <th scope="col">Activity</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for item in items %}
-                    <tr>
-                        <td>{{ item.name}}</td>
-                        <td>{{ item.department}}</td>
-                        <td>{{ item.hours }}</td>
-                        <td>{{ item.shift }}</td>
-                        <td>{{ item.ward }}</td>
-                        <td>
-                            <a class="btn btn-info btn-sm" href="{% url 'dashboard-duty-update' item.id %}">Edit</a>
-                            <a class="btn btn-danger btn-sm" href="{% url 'dashboard-duty-delete' item.id %}">Delete</a>
-                        </td>
-                    </tr>
-                    {% endfor %} 
-                </tbody>
-            </table>
+            <div id="myBillingArea">
+                <table class="table bg-white">
+                    <thead class="bg-primary">
+                        <tr class="text-white">
+                            <th style="border-bottom: 1px solid #ccc;" scope="col">Name</th>
+                            <th style="border-bottom: 1px solid #ccc;" scope="col">Department</th>
+                            <th style="border-bottom: 1px solid #ccc;" scope="col">Hours</th>
+                            <th style="border-bottom: 1px solid #ccc;" scope="col">Shift</th>
+                            <th style="border-bottom: 1px solid #ccc;" scope="col">Ward</th>
+                            <th style="border-bottom: 1px solid #ccc;" scope="col">Activity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in items %}
+                        <tr>
+                            <td style="border-bottom: 1px solid #ccc;">{{ item.name}}</td>
+                            <td style="border-bottom: 1px solid #ccc;">{{ item.department}}</td>
+                            <td style="border-bottom: 1px solid #ccc;">{{ item.hours }}</td>
+                            <td style="border-bottom: 1px solid #ccc;">{{ item.shift }}</td>
+                            <td style="border-bottom: 1px solid #ccc;">{{ item.ward }}</td>
+                            <td style="border-bottom: 1px solid #ccc;">
+                                <a class="btn btn-info btn-sm" href="{% url 'dashboard-duty-update' item.id %}">Edit</a>
+                                <a class="btn btn-danger btn-sm" href="{% url 'dashboard-duty-delete' item.id %}">Delete</a>
+                            </td>
+                        </tr>
+                        {% endfor %} 
+                    </tbody>
+                </table>
+            </div>
+            <div class="mt-4 text-end">
+                <button class="btn btn-info px-4 mx-1" onclick="printMyBillingArea()">Print</button>
+                <button class="btn btn-primary px-4 mx-1" onclick="downloadPDF('dutyRoster')">Download PDF</button>
+            </div>
         </div>
     </div>
 
 </div>
+<script>
+    function printMyBillingArea(){
+        var divContents = document.getElementById("myBillingArea").innerHTML;
+        var a = window.open("","");
+        a.document.write('<html><title>Duty Roster</title>');
+        a.document.write('<body style="font-family:fangsong">');
+        a.document.write(divContents);
+        a.document.write('</body></html>');
+        a.document.close();
+        a.print()
+     }
+    //links for allowing the pdf download
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" integrity="sha512-qZvrmS2ekKPF2mSznTQsxqPgnpkI4DNTlrdUmTzrDgektczlKNRRhy5X5AAOnx5S09ydFYWWNSfcEqDTTHgtNA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+     //function for downloading PDF in the id="myBillingArea" found in order-view-print.php
+     window.jsPDF = window.jspdf.jsPDF;
+     var docPDF = new jsPDF;
+     function downloadPDF(dutyroster){
+        var elementHTML = document.querySelector("#myBillingArea");
+        docPDF.html(elementHTML,{
+            callback:function(){
+                docPDF.save(dutyroster+'.pdf')
+            },
+            x:15,
+            y:15,
+            width:170,
+            windowWidth:650
+        });
+     }
+</script>
 {% endblock %}
