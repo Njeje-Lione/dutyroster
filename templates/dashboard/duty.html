@@ -25,7 +25,7 @@
         </div>
         
         <div class="col-md-9">
-            <div id="myBillingArea">
+            <div id="myPrintingArea">
                 <table class="table bg-white">
                     <thead class="bg-primary">
                         <tr class="text-white">
@@ -45,6 +45,7 @@
                             <td style="border-bottom: 1px solid #ccc;">{{ item.hours }}</td>
                             <td style="border-bottom: 1px solid #ccc;">{{ item.shift }}</td>
                             <td style="border-bottom: 1px solid #ccc;">{{ item.ward }}</td>
+            </div>
                             <td style="border-bottom: 1px solid #ccc;">
                                 <a class="btn btn-info btn-sm" href="{% url 'dashboard-duty-update' item.id %}">Edit</a>
                                 <a class="btn btn-danger btn-sm" href="{% url 'dashboard-duty-delete' item.id %}">Delete</a>
@@ -53,7 +54,7 @@
                         {% endfor %} 
                     </tbody>
                 </table>
-            </div>
+           
             <div class="mt-4 text-end">
                 <button class="btn btn-info px-4 mx-1" onclick="printMyBillingArea()">Print</button>
                 <button class="btn btn-primary px-4 mx-1" onclick="downloadPDF('dutyRoster')">Download PDF</button>
@@ -64,13 +65,13 @@
 </div>
 <script>
     function printMyBillingArea(){
-        var divContents = document.getElementById("myBillingArea").innerHTML;
+        var divContents = document.getElementById("myPrintingArea").innerHTML;
         var a = window.open("","");
         a.document.write('<html><title>Duty Roster</title>');
         a.document.write('<body style="font-family:fangsong">');
         a.document.write(divContents);
         a.document.write('</body></html>');
-        a.document.close();
+        a.document.close();s
         a.print()
      }
     //links for allowing the pdf download
@@ -82,7 +83,7 @@
      window.jsPDF = window.jspdf.jsPDF;
      var docPDF = new jsPDF;
      function downloadPDF(dutyroster){
-        var elementHTML = document.querySelector("#myBillingArea");
+        var elementHTML = document.querySelector("#myPrintingArea");
         docPDF.html(elementHTML,{
             callback:function(){
                 docPDF.save(dutyroster+'.pdf')
